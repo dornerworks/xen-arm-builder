@@ -44,11 +44,7 @@ mkfs.vfat ${MLOOPDEV}p1
 mkfs.ext4 ${MLOOPDEV}p2
 
 mount ${MLOOPDEV}p1 /mnt
-cp boot/boot-${BOARD}.scr /mnt/boot.scr
-cp linux/arch/arm/boot/zImage /mnt/vmlinuz
-cp linux/arch/arm/boot/dts/sun7i-a20-cubieboard2.dtb /mnt/
-cp linux/arch/arm/boot/dts/sun7i-a20-cubietruck.dtb /mnt/
-cp xen/xen/xen /mnt/
+cp FIT/cubietruck-xen.itb /mnt/
 umount /mnt
 
 mount ${MLOOPDEV}p2 /mnt
