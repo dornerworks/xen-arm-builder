@@ -6,7 +6,7 @@ BOARD ?= cubieboard2
 # BOARD ?= cubietruck
 FIRMWARE ?= rtlwifi htc_9271.fw
 
-all: 
+all:
 	@echo ------
 	@echo "BOARD can be: cubieboard2 (default) or cubietruck"
 	@echo ""
@@ -29,6 +29,7 @@ build:
 	BOARD=$(BOARD) ./build-uboot.sh
 	./build-xen.sh
 	./build-linux.sh
+	./build-fit.sh
 
 ## Get the latest Linaro root image
 $(ROOTFS):
