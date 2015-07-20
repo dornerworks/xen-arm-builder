@@ -22,10 +22,10 @@ clone_branch () {
 }
 
 if [ ! -d u-boot ]; then
-  git clone git://git.denx.de/u-boot.git -b v2015.04
+  git clone git://git.denx.de/u-boot.git -b v2015.07
 else
   cd u-boot
-  git pull --ff-only origin v2015.04
+  git pull --ff-only origin v2015.07
   cd ..
 fi
 
@@ -64,4 +64,3 @@ else
   git pull --ff-only https://github.com/talex5/xen.git fix-grant-mapping
   cd ..
 fi
-
