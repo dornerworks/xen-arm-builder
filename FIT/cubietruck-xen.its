@@ -49,6 +49,18 @@
             };
         };
 
+        fdt@3 {
+            description = "Cubietruck Xen tree blob 2";
+            data = /incbin/("./xen2.dtb");
+            type = "flat_dt";
+            arch = "arm";
+            compression = "none";
+            load = <0xaec00000>;
+            hash@1 {
+                algo = "md5";
+            };
+        };
+
         linux_kernel@1 {
             description = "Linux zImage";
             data = /incbin/("./vmlinuz");
@@ -65,19 +77,26 @@
     };
 
     configurations {
-        default = "config@2";
+        default = "config@1";
 
         config@1 {
-            description = "Just plain Linux";
-            kernel = "linux_kernel@1";
-            fdt = "fdt@2";
+            description = "Xen 4.6.0-one loadable";
+            kernel = "xen_kernel@1";
+            fdt = "fdt@1";
+            loadables = "linux_kernel@1";
         };
 
         config@2 {
             description = "Xen 4.6.0-one loadable";
             kernel = "xen_kernel@1";
-            fdt = "fdt@1";
+            fdt = "fdt@3";
             loadables = "linux_kernel@1";
+        };
+
+        config@3 {
+            description = "Plain Linux";
+            kernel = "linux_kernel@1";
+            fdt = "fdt@2";
         };
     };
 };
