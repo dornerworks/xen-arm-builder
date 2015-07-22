@@ -73,21 +73,27 @@ described on the [sunxi](http://linux-sunxi.org/Toolchain) site.
 
 # Booting
 
-Insert the SDcard in the device, then connect the network and power.
-The device should get an IP address using DHCP.
-SSH to the device (the name is `$BOARD.local.`, which can be used if your machine
-supports mDNS/avahi/zeroconf):
+Insert the SDcard in the device, then connect the network, TTL-to-USB, and power.
+Connect to the serial port over USB on your host machine.
 
-    $ ssh mirage@cubieboard2.local.
+Once U-Boot begins, hit any key to stop the auto boot, and perform the following:
 
-The password is `mirage`.
+1. Load the FIT Image into memory
 
-Install your SSH public key and change login password (or lock the
-account with `sudo passwd -l mirage`).
+        fatload mmc 0 0x80000000 /cubietruck-xen.itb
 
-If you plan on connecting to TLS-secured services, don't forget to set
-the system time so that certificate validity windows work correctly (not
-many TLS certificates were valid in 1970).
+2. Then boot one of the configurations
+
+        bootm 0x80000000#config@1
+
+or
+
+        bootm 0x80000000#config@2
+
+Xen will now bootup along with a dom0. Before running the `bootm` command in u-boot, you can
+get more information about the loaded FIT Image with the following command.
+
+        iminfo 0x80000000
 
 # Using Xen
 
