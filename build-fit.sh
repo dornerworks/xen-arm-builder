@@ -8,4 +8,4 @@ dtc -I dts -O dtb -o FIT/xen.dtb FIT/xen.dts
 dtc -I dts -O dtb -o FIT/xen2.dtb FIT/xen2.dts
 
 cd FIT/
-mkimage -f cubietruck-xen.its cubietruck-xen.itb
+../u-boot/build-cubietruck/tools/mkimage -f cubietruck-xen.its cubietruck-xen.itb
